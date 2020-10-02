@@ -20,11 +20,11 @@ public class Program {
 				UI.clearScreen();
 				UI.printBoard(chessMatch.getPieces());
 				System.out.println();
-				System.out.print("Source: ");
+				System.out.print("Qual peça deseja mover?  ");
 				ChessPosition source = UI.readChessPosition(sc);
 				
 				System.out.println();
-				System.out.print("Target: ");
+				System.out.print("Onde deseja colocar esta peça?  ");
 				ChessPosition target = UI.readChessPosition(sc);
 				
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);

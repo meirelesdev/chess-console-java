@@ -12,7 +12,8 @@ public class ChessPosition {
 		column = Character.toLowerCase(column);
 		
 		if(column < 'a' || column > 'h' || row < 1 || row > 8 ) {
-			throw new ChessException("Error instantiating ChessPosition: Valid values are from a1 to h8.");
+//			throw new ChessException("Error instantiating ChessPosition: Valid values are from a1 to h8.");
+			throw new ChessException("Posição invalida: Os valores validos são de a1 até h8.");
 		}
 		this.column = column;
 		this.row = row;
