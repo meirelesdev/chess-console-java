@@ -22,7 +22,7 @@ public class UI {
 
 	public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
 	public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-	public static final String ANSI_GREEN_BACKGROUND = "\u001B[45m"; // CODIGO COR VERMELHO
+	public static final String ANSI_GREEN_BACKGROUND = "\u001B[45m"; // CODIGO COR PURPLE
 //	public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m"; // CODIGO COR VERDE
 	public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
 	public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
@@ -34,6 +34,7 @@ public class UI {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
+
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
 			String s = sc.nextLine();
@@ -59,7 +60,7 @@ public class UI {
 			System.out.print(ANSI_GREEN_BACKGROUND + "| " + (8 - i) + " |" + ANSI_RESET + " ");
 
 			for (int j = 0; j < piece.length; j++) {
-				printPiece(piece[i][j]);
+				printPiece(piece[i][j], false);
 			}
 			System.out.println();
 		}
@@ -71,19 +72,59 @@ public class UI {
 				+ ANSI_RESET);
 	}
 
-	private static void printPiece(ChessPiece piece) {
+	public static void printBoard(ChessPiece[][] piece, boolean[][] possibleMoves) {
 
-		if (piece == null) {
-			System.out.print(" -  " + ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET);
-		} else {
-			if (piece.getColor() == Color.WHITE) {
-				System.out.print(ANSI_WHITE_BACKGROUND + ANSI_BLACK + " " + piece + " " + ANSI_RESET + " "
-						+ ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET);
+		System.out.println(ANSI_GREEN_BACKGROUND + ANSI_WHITE + "-----------------------------------------------------"
+				+ ANSI_RESET);
+		System.out.println(ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|                  Jogo de Xadrez                   |"
+				+ ANSI_RESET);
+		System.out.println(ANSI_GREEN_BACKGROUND + ANSI_WHITE + "-----------------------------------------------------"
+				+ ANSI_RESET);
+
+		for (int i = 0; i < piece.length; i++) {
+			System.out.print(ANSI_GREEN_BACKGROUND + "| " + (8 - i) + " |" + ANSI_RESET + " ");
+
+			for (int j = 0; j < piece.length; j++) {
+				printPiece(piece[i][j], possibleMoves[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println(ANSI_GREEN_BACKGROUND + ANSI_WHITE + "-----------------------------------------------------"
+				+ ANSI_RESET);
+		System.out.println(ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|   |  a  |  b  |  c  |  d  |  e  |  f  |  g  |  h  |"
+				+ ANSI_RESET);
+		System.out.println(ANSI_GREEN_BACKGROUND + ANSI_WHITE + "-----------------------------------------------------"
+				+ ANSI_RESET);
+	}
+
+	private static void printPiece(ChessPiece piece, boolean moves) {
+
+		if (moves) {
+			if (piece == null) {
+				System.out.print(ANSI_BLUE_BACKGROUND + " - "+ ANSI_RESET+ " " + ANSI_WHITE + ANSI_GREEN_BACKGROUND + "|" + ANSI_RESET);
 			} else {
-				System.out.print(ANSI_BLACK_BACKGROUND + ANSI_WHITE + " " + piece + " " + ANSI_RESET + " "
-						+ ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET);
+				if (piece.getColor() == Color.WHITE) {
+					System.out.print(ANSI_BLUE_BACKGROUND + ANSI_BLACK + " " + piece + " " + ANSI_RESET + " "
+							+ ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET );
+				} else {
+					System.out.print(ANSI_BLUE_BACKGROUND + ANSI_WHITE + " " + piece + " " + ANSI_RESET + " "
+							+ ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET);
+				}
+			}
+		} else {
+			if (piece == null) {
+				System.out.print(" -  " + ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET);
+			} else {
+				if (piece.getColor() == Color.WHITE) {
+					System.out.print(ANSI_WHITE_BACKGROUND + ANSI_BLACK + " " + piece + " " + ANSI_RESET + " "
+							+ ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET);
+				} else {
+					System.out.print(ANSI_BLACK_BACKGROUND + ANSI_WHITE + " " + piece + " " + ANSI_RESET + " "
+							+ ANSI_GREEN_BACKGROUND + ANSI_WHITE + "|" + ANSI_RESET);
+				}
 			}
 		}
+
 		System.out.print(" ");
 
 	}
