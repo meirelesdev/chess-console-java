@@ -55,7 +55,7 @@ public class UI {
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
 		printCapturedPiece(captured);
-		System.out.println(ANSI_RED_BACKGROUND + "TOTAL DE JOGADAS: "+   chessMatch.getTurn() + ANSI_RESET);
+		System.out.println(ANSI_RED_BACKGROUND + "TOTAL DE TURNOS: "+   chessMatch.getTurn() + ANSI_RESET);
 		
 		if(chessMatch.getCurrentPlayer() == Color.WHITE) {
 			System.out.println(ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Aguardando movimento da peça " + chessMatch.getCurrentPlayer() + "..." + ANSI_RESET);	
@@ -63,6 +63,9 @@ public class UI {
 			System.out.println(ANSI_BLACK_BACKGROUND + ANSI_WHITE + "Aguardando movimento da peça " + chessMatch.getCurrentPlayer() + "..." + ANSI_RESET);
 		}
 		
+		if(chessMatch.getCheck()) {
+			System.out.println(ANSI_YELLOW_BACKGROUND + ANSI_RED +"Rei "+ chessMatch.getCurrentPlayer()  +" in CHECK!" + ANSI_RESET);
+		}
 	}
 
 	public static void printBoard(ChessPiece[][] piece) {
