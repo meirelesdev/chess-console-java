@@ -57,12 +57,13 @@ public class UI {
 		printCapturedPiece(captured);
 		System.out.println(ANSI_RED_BACKGROUND + "TOTAL DE TURNOS: " + chessMatch.getTurn() + ANSI_RESET);
 		if (!chessMatch.getCheckMate()) {
+			String player = chessMatch.getCurrentPlayer() == Color.WHITE ? "BRANCA" : "PRETA";
 			if (chessMatch.getCurrentPlayer() == Color.WHITE) {
 				System.out.println(ANSI_WHITE_BACKGROUND + ANSI_BLACK + "Aguardando movimento da peça "
-						+ chessMatch.getCurrentPlayer() + "..." + ANSI_RESET);
+						+ player + "..." + ANSI_RESET);
 			} else {
 				System.out.println(ANSI_BLACK_BACKGROUND + ANSI_WHITE + "Aguardando movimento da peça "
-						+ chessMatch.getCurrentPlayer() + "..." + ANSI_RESET);
+						+ player + "..." + ANSI_RESET);
 			}
 
 			if (chessMatch.getCheck()) {
@@ -89,8 +90,11 @@ public class UI {
 
 			for (int j = 0; j < piece.length; j++) {
 				printPiece(piece[i][j], false);
+				
 			}
+			
 			System.out.println();
+			
 		}
 		System.out.println(ANSI_GREEN_BACKGROUND + ANSI_WHITE + "-----------------------------------------------------"
 				+ ANSI_RESET);

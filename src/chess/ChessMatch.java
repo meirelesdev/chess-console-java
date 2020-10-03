@@ -139,6 +139,7 @@ public class ChessMatch {
 		board.placePiece(newPiece, pos);
 		piecesOnTheBoard.add(newPiece);
 		
+		check = (testCheck(currentPlayer)) ? true : false;
 		return newPiece;
 		
 	}
