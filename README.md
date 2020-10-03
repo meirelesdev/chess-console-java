@@ -1,2 +1,2 @@
 # chess-console-java
-game chess developement whith curso java complet 2020 udemy
+game chess developement with curso java complet 2020 udemy
